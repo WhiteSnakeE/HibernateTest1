@@ -1,6 +1,7 @@
 package Project1.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 
 @Entity
@@ -17,9 +18,21 @@ public class Movie {
     @Column(name = "moviesPrice")
     private int moviesPrice;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH})
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     private Author author;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
     public Author getAuthor() {
         return author;

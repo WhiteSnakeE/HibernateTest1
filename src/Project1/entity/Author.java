@@ -19,7 +19,7 @@ public class Author {
     public Author() {
 
     }
-    @OneToMany(cascade = {CascadeType.REFRESH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH}, mappedBy = "author")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
     private List<Movie> movies;
 
     public List<Movie> getMovies() {
