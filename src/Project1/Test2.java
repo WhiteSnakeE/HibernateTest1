@@ -28,8 +28,6 @@ public class Test2 {
 //            Movie movie4 = new Movie("Jojo",12,10);
               Movie movie5 = new Movie("AOT",10,240);
 
-//            session.get(Author.class,7).addMovieToAuthor(movie5);
-//            session.get(Company.class,4).addMovieToCompany(movie5);
 
             session.beginTransaction();
             movie5.setCompany(session.get(Company.class,4));

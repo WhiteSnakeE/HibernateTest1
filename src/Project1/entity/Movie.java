@@ -2,6 +2,7 @@ package Project1.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -26,8 +27,29 @@ public class Movie {
     @JoinColumn(name = "company_id")
     private Company company;
 
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.DETACH})
+    @JoinTable(
+            name = "actors_movie"
+            ,joinColumns = @JoinColumn(name = "id_movie")
+            ,inverseJoinColumns = @JoinColumn(name = "id_actors")
+    )
+
+    private List<Actors> actors;
     public Company getCompany() {
         return company;
+    }
+    public void addActorToMovie(Actors actor){
+        if(actors==null){
+            actors = new ArrayList<>();
+        }
+        actors.add(actor);
+    }
+    public List<Actors> getActors() {
+        return actors;
+    }
+
+    public void setActors(List<Actors> actors) {
+        this.actors = actors;
     }
 
     public void setCompany(Company company) {
