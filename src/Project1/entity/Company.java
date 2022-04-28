@@ -21,6 +21,16 @@ public class Company {
     @Column(name = "country")
     private String country;
 
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
+    }
+
+    @OneToOne(mappedBy = "company",cascade ={CascadeType.REFRESH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH})
+    private Director director;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<Movie> movies;
 
